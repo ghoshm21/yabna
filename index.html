@@ -1,0 +1,26 @@
+<script>
+    async function fetchNews() {
+        const response = await fetch('news_data.json');
+        const data = await response.json();
+        displayNews(data.news);
+    }
+
+    function displayNews(newsArray) {
+        const newsContainer = document.getElementById('news-container');
+        newsContainer.innerHTML = '';
+        newsArray.forEach(news => {
+            const newsItem = document.createElement('div');
+            newsItem.className = 'news-item';
+            newsItem.innerHTML = `
+                <h3>${news.title}</h3>
+                <p>${news.summary}</p>
+                <p>${news.ml_hf_summary}</p>
+                <a href="${news.link}" target="_blank">Read Main Article</a>
+                <p>${news.published}</p>
+            `;
+            newsContainer.appendChild(newsItem);
+        });
+    }
+
+    window.onload = fetchNews;
+</script>
