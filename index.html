@@ -1,8 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ByteNews</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .title-container {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, #4e54c8, #8f94fb);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-weight: 300;
+            font-size: 1.4rem;
+            margin-top: 0;
+        }
+
+        #news-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .news-item {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .news-item p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .news-item a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #4e54c8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+
+        .news-item .date {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .stumble-btn {
+            display: block;
+            margin: 20px auto 40px;
+            padding: 12px 25px;
+            background-color: #4e54c8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .stumble-btn:hover {
+            background-color: #2f3ec4;
+        }
+    </style>
+</head>
 <body>
-    <!-- Your content here -->
+    <div class="title-container">
+        <h1>ByteNews</h1>
+        <h2>AI NewsLens: Global News at a Glance, Powered by AI</h2>
+    </div>
+
     <div id="news-container"></div>
 
-    <!-- Move the script down here -->
     <script>
         async function fetchNews() {
             const response = await fetch('news_data.json');
@@ -21,7 +128,7 @@
                     <p>${news.summary}</p>
                     <p>${news.ml_hf_summary}</p>
                     <a href="${news.link}" target="_blank">Read Main Article</a>
-                    <p>${news.published}</p>
+                    <p class="date">${news.published}</p>
                 `;
                 newsContainer.appendChild(newsItem);
             });
@@ -30,3 +137,4 @@
         window.onload = fetchNews;
     </script>
 </body>
+</html>
