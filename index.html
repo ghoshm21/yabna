@@ -67,6 +67,9 @@
             line-height: 1.6;
         }
 
+        .summary {
+            font-weight: 500; /* semi-bold */
+        }
         .news-item a {
             display: inline-block;
             margin-top: 10px;
@@ -125,7 +128,8 @@
                 newsItem.className = 'news-item';
                 newsItem.innerHTML = `
                     <h3>${news.title}</h3>
-                    <p>${news.summary}</p>
+                    // <p>${news.summary}</p>
+                    <p><strong class="summary">${news.summary}</strong></p>
                     <p>${news.ml_hf_summary}</p>
                     <a href="${news.link}" target="_blank">Read Main Article</a>
                     <p class="date">${news.published}</p>
